@@ -1,0 +1,72 @@
+<div class="container">
+	<div class="jumbotron">
+		<h1>skillcape Application</h1>
+	<table>
+		<tr>
+			<th>
+				<div>
+					<h2 class="row-height">Register with us</h2>
+				</div>
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<div>
+					<form [formGroup]="myForm" (ngSubmit)="register()">
+						<table>
+							<tr class="row-height">
+								<th>
+									Email:
+									
+								</th>
+								<th>
+									<input formControlName="email" type="text" class="form-control">
+                
+								</th>
+							</tr>
+							<tr class="row-height">
+								<th>
+									Firstname:
+										
+								<th>
+									<input formControlName="firstName" type="text" class="form-control">
+                
+								</th>
+							</tr>
+							<tr class="row-height">
+								<th>
+									Lastname:
+								<th>
+									<input formControlName="lastName" type="text" class="form-control">
+                
+								</th>
+							</tr>
+							<tr class="row-height">
+								<th>
+									Password:
+										
+								</th>
+								<th>
+									<input formControlName="password" type="text" class="form-control">
+                
+								</th>
+							</tr>
+						</table>
+						<div class="">
+							<button (click)="register()" type="submit" class="btn btn-primary" >Register</button>
+						</div>
+					</form>
+				</div>
+			</th>
+		</tr>
+		<tr>
+			<th>
+				<div>
+					Existing User?
+					<a href="#" (click)="login()">login</a>
+				</div>
+			</th>
+		</tr>
+	</table>
+	</div>
+</div>

@@ -1,0 +1,84 @@
+namespace org.skillcape
+
+asset Skill identified by personSkillId {
+  o String personSkillId
+  o String skillCode
+  o String name
+  o Category category
+  o Status status
+  --> Student student
+}
+
+enum Status {
+  o NEW
+  o APPROVED
+}
+
+abstract participant Person identified by personId {
+  o String personId
+  o String firstName
+  o String lastName
+  o String secretId
+  --> Institution institute
+}
+
+enum Category {
+  o Engineering
+  o Management
+  o Analytics
+  o Psychology
+}
+
+participant Student extends Person {
+  o Category category optional
+  o Skill[] skills optional
+}
+
+participant Administrator extends Person {
+}
+
+participant Institution identified by institutionCode {
+  o String institutionCode
+  o String name
+  o String city
+}
+
+transaction publish {
+  --> Skill skill
+  --> Person person
+  o Status newStatus
+}
+
+transaction studentPublishSkill {
+  --> Skill skill
+  --> Person person
+}
+
+transaction adminUpdateSkill {
+  --> Skill skill
+  --> Person person
+  o Status newStatus
+}
+
+enum Type {
+ o Student
+ o Admin
+}
+
+transaction register {
+  o String personId
+  o String firstName
+  o String lastName
+  o String institutionCode
+  o String secretId
+  o Type personType
+}
+
+transaction login {
+  o String personId
+  o String secretId
+}
+
+transaction issueIdentity {
+  o String personId
+}

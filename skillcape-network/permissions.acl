@@ -1,0 +1,57 @@
+rule SystemACL {
+  description: "System ACL to permit all access"
+  participant: "ANY"
+  operation: ALL 
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+rule NetworkAdminUser {
+  description: "Grant business network administartors full access to user resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL 
+  resource: "**"
+  action: ALLOW
+}
+
+rule defaultStudentReadRule {
+  description: "Students can perform all skills operations"
+  participant: "org.skillcape.Student"
+  operation: READ
+  resource: "org.skillcape.*"
+  action: ALLOW
+}
+
+rule defaultStudentSkillRule {
+  description: "Students can perform all skills operations"
+  participant: "org.skillcape.Student"
+  operation: ALL
+  resource: "org.skillcape.Skill"
+  action: ALLOW
+}
+
+
+
+rule defaultAdminRule {
+  description: "Administrator can perform all skills operations"
+  participant: "org.skillcape.Administrator"
+  operation: ALL
+  resource: "org.skillcape.*"
+  action: ALLOW
+}
+
+rule assetStudentConditionalRule {
+  description: "Student can do all operation except update on skill if it's his skill"
+  participant: "org.skillcape.Student"
+  operation: ALL
+  resource: "org.skillcape.Skill"
+  action: ALLOW
+}
+
+rule assetAdminConditionalRule {
+  description: "Admin can do update operation on skill "
+  participant: "org.skillcape.Administrator"
+  operation: UPDATE
+  resource: "org.skillcape.Skill"
+  action: ALLOW
+}
